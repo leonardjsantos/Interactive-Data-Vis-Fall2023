@@ -19,6 +19,45 @@ p {
   font-size: 1em;
 }
 
+.tableHead{
+  background-color: lavender;
+  font-size: 2rem;
+  padding: 5%;
+}
+
+tr{
+  background-color: white;
+  
+}
+
+td{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+th{
+  background-color: lightgray;
+}
+
 table, th, td{
   border: 1px solid black;
+}
+
+svg{
+  background-color: aliceblue;
+}
+
+svg #heart{
+  fill: red;
+  z-index: 1000;
+}
+
+#willowImage1{
+  width: 40%;
+  text-align: center;
+}
+
+#catContainer{
+  padding-top: 2%;
+  text-align: center;
 }

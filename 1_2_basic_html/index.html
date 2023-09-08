@@ -10,45 +10,53 @@
   <h1>Hello World!</h1>
   <h3>Section 1 | Tutorial 2 | Basic HTML</h3>
   <table>
-    <tr>
-      <th>Last Name</th>
-      <th>First Name</th>
-      <th>Age</th>
-      <th>Species</th>
-      <th>Class</th>
-
-    </tr>
-    <tr>
-      <td>Breed</td>
-      <td>Jack Russell</td>
-      <td>Poodle</td>
-      <td>Streetdog</td>
-      <td>Cocker Spaniel</td>
-    </tr>
-    <tr>
-      <td>Age</td>
-      <td>16</td>
-      <td>9</td>
-      <td>10</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td>Owner</td>
-      <td>Mother-in-law</td>
-      <td>Me</td>
-      <td>Me</td>
-      <td>Sister-in-law</td>
-    </tr>
-    <tr>
-      <td>Eating Habits</td>
-      <td>Eats everyone's leftovers</td>
-      <td>Nibbles at food</td>
-      <td>Hearty eater</td>
-      <td>Will eat till he explodes</td>
-    </tr>
+    <thead>
+      <tr>
+        <th  class="tableHead" colspan="4">Leonard's D&D Characters</th>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <th>Campaign</th>
+        <th>Class</th>
+        <th>Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dani dela Cruz</td>
+        <td>The Most Dangerous Campaign</td>
+        <td>Cleric</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>Stefan Blinski</td>
+        <td>The Curse of Strahd</td>
+        <td>Artificer</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Brión of the Spring Court</td>
+        <td>Meteors over Mordent</td>
+        <td>Barbarian</td>
+        <td>2</td>
+      </tr>
+    </tbody>
   </table>
+
+  <button>Click me! I don't do anything.</button>
+
+  <div id="catContainer">
+    <img id="willowImage1" alt="image of Willow, Leonard's cat" src="images/cat.png">
+  </div>
   <svg>
-    <!-- Add your rectangles in here -->
+    <path id="heart" fill="white"
+    d="M 10,30
+        A 20,20 0,0,1 50,30
+        A 20,20 0,0,1 90,30
+        Q 90,60 50,90
+        Q 10,60 10,30 z" />
+    <rect width="600" height="400" x = "200">
+     
   </svg>
 </body>
 </html>
