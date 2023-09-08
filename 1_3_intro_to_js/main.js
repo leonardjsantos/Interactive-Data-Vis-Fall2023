@@ -1,3 +1,14 @@
+let counter = 0;
+const display = document.getElementById("counterDisplay");
+
+const counterFunction = () => {
+    counter += 1;
+    display.innerHTML = `${counter}`;
+}
+
+
+// IN CLASS WORK BELOW
+/*
 console.log('hello world');
 
 const string = "string";
@@ -55,3 +66,4 @@ const shareAnswer = () => {
     window.alert(`You feel this way about cheese: ${answer}`);
     label.innerHTML = `You said ${answer}. Do you want to change it?`;
 }
+*/
