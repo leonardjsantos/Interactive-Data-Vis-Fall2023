@@ -28,10 +28,11 @@ d3.csv('../data/MoMA_topTenNationalities.csv', d3.autoType)
       .data(data)
       .join("rect")
       .attr("class", "bar")
+      .attr("width", d => xScale(d.count))
 
+      // .attr("width", xScale.bandwidth())
+      // .attr("height", d => height - yScale(d.count))
       .attr("y", d => yScale(d.nationality))
-      .attr("height", yScale.bandwidth())
-      .attr("width", d => width - xScale(d.count))
       .attr("x", d => xScale(d.nationality))
       
     const xAxisGroup = svg.append("g")
@@ -40,7 +41,9 @@ d3.csv('../data/MoMA_topTenNationalities.csv', d3.autoType)
     yAxisGroup
       .call(d3.axisLeft(yScale))
     
-
+    xAxisGroup
+      .style("transform", `translate(0, ${height}px)`)
+      .call(d3.axisBottom(xScale))
     // const xAxisGroup = svg.append("g")
     // const yAxisGroup = svg.append("g")
 
