@@ -9,11 +9,12 @@ d3.csv('../data/MoMA_topTenNationalities.csv', d3.autoType)
   .then(data => {
     console.log("data", data)
 
-    const xScale = d3.scaleBand()
+    const xScale = d3.scaleLinear()
       .domain([0, d3.max(data.map(d => d.count))])
       .range([0, width])
+      .nice()
 
-    const yScale = d3.scaleLinear()
+    const yScale = d3.scaleBand()
       .domain(data.map(d => d.nationality))
       .range([height,0])
     
@@ -29,11 +30,9 @@ d3.csv('../data/MoMA_topTenNationalities.csv', d3.autoType)
       .join("rect")
       .attr("class", "bar")
       .attr("width", d => xScale(d.count))
-
-      // .attr("width", xScale.bandwidth())
-      // .attr("height", d => height - yScale(d.count))
+      .attr("height", 50)
       .attr("y", d => yScale(d.nationality))
-      .attr("x", d => xScale(d.nationality))
+      .attr("x", d => xScale(0))
       
     const xAxisGroup = svg.append("g")
     const yAxisGroup = svg.append("g")
@@ -44,15 +43,6 @@ d3.csv('../data/MoMA_topTenNationalities.csv', d3.autoType)
     xAxisGroup
       .style("transform", `translate(0, ${height}px)`)
       .call(d3.axisBottom(xScale))
-    // const xAxisGroup = svg.append("g")
-    // const yAxisGroup = svg.append("g")
-
-    // yAxisGroup
-    //   .call(d3.axisLeft(yScale))
-
-    // // xAxisGroup
-    // // .style("transform", `translate(0, ${height}px)`)
-    // // .call(d3.axisBottom(xScale))
 
   })
 
