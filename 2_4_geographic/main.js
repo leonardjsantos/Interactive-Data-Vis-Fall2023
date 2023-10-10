@@ -7,10 +7,10 @@ const width = window.innerWidth * 0.9,
  * LOAD DATA
  * Using a Promise.all([]), we can load more than one dataset at a time
  * */
- Promise.all([
-  d3.json("../data/usState.json"),
-  d3.csv("../data/stateCapitals.csv", d3.autoType),
-]).then(([geojson, capitals]) => {
+Promise.all([
+  d3.json("../data/world.json"),
+  d3.csv("../data/MoMA_nationalities.csv", d3.autoType),
+]).then(([geojson, nationalities]) => {
   
   const svg = d3.select("#container")
     .append("svg")
@@ -19,8 +19,7 @@ const width = window.innerWidth * 0.9,
     .style("background-color", "pink")
 
   // SPECIFY PROJECTION
- 
-  const projection = d3.geoAlbersUsa()
+  const projection = d3.geoNaturalEarth1()
     .fitSize([width, height], geojson)
 
   // DEFINE PATH FUNCTION
@@ -28,32 +27,103 @@ const width = window.innerWidth * 0.9,
   // console.log(path)
 
   // APPEND GEOJSON PATH  
-  const states = svg
-    .selectAll("path.state")
+  const countries = svg.selectAll("path.country")
     .data(geojson.features)
     .join("path")
-    .attr("class", 'state')
+    .attr("class", 'country')
     .attr("d", pathGenFn)
     .attr("stroke", "black")
-    .attr("fill", "transparent")
+    .attr("fill", "transparent")    
+
+  svg.selectAll("circle.countries")
+      .data(nationalities)
+      .join("circle")
+      .attr("class", "nationalities")
+      .attr("r", 5)
+      .attr("transform", d =>{
+        const [x,y] = projection([d.longitude, d.latitude])
+        return `translate(${x}, ${y})`
+      })
+
+  
+
+  // FILL IN COUNTRIES
+ 
   
   // APPEND DATA AS SHAPE
 
-  svg.append("circle")
-    .attr("r", 20)
-    .attr("transform", () => {
-      const[x,y] = projection([-73.9833, 40.7423])
-      return `translate(${x}, ${y})`
-    })
+  // svg.append("circle")
+  //   .attr("r", 20)
+  //   .attr("transform", () => {
+  //     const[x,y] = projection([-73.9833, 40.7423])
+  //     return `translate(${x}, ${y})`
+  //   })
 
-  svg.selectAll("circle.capital")
-    .data(capitals)
-    .join("circle")
-    .attr("class", "capital")
-    .attr("r", 5)
-    .attr("transform", d =>{
-      const [x,y] = projection([d.longitude, d.latitude])
-      return `translate(${x}, ${y})`
-    })
+  // svg.selectAll("circle.capital")
+  //   .data(capitals)
+  //   .join("circle")
+  //   .attr("class", "capital")
+  //   .attr("r", 5)
+  //   .attr("transform", d =>{
+  //     const [x,y] = projection([d.longitude, d.latitude])
+  //     return `translate(${x}, ${y})`
+  //   })
+
 
 });
+
+
+/**
+ * LOAD DATA
+ * Using a Promise.all([]), we can load more than one dataset at a time
+ * */
+//  Promise.all([
+//   d3.json("../data/usState.json"),
+//   d3.csv("../data/stateCapitals.csv", d3.autoType),
+// ]).then(([geojson, capitals]) => {
+  
+//   const svg = d3.select("#container")
+//     .append("svg")
+//     .attr("height", height)
+//     .attr("width", width)
+//     .style("background-color", "pink")
+
+//   // SPECIFY PROJECTION
+ 
+//   const projection = d3.geoAlbersUsa()
+//     .fitSize([width, height], geojson)
+
+//   // DEFINE PATH FUNCTION
+//   const pathGenFn = d3.geoPath().projection(projection)
+//   // console.log(path)
+
+//   // APPEND GEOJSON PATH  
+//   const states = svg
+//     .selectAll("path.state")
+//     .data(geojson.features)
+//     .join("path")
+//     .attr("class", 'state')
+//     .attr("d", pathGenFn)
+//     .attr("stroke", "black")
+//     .attr("fill", "transparent")
+  
+//   // APPEND DATA AS SHAPE
+
+//   svg.append("circle")
+//     .attr("r", 20)
+//     .attr("transform", () => {
+//       const[x,y] = projection([-73.9833, 40.7423])
+//       return `translate(${x}, ${y})`
+//     })
+
+//   svg.selectAll("circle.capital")
+//     .data(capitals)
+//     .join("circle")
+//     .attr("class", "capital")
+//     .attr("r", 5)
+//     .attr("transform", d =>{
+//       const [x,y] = projection([d.longitude, d.latitude])
+//       return `translate(${x}, ${y})`
+//     })
+
+// });

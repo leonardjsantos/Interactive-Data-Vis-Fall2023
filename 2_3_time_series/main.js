@@ -67,7 +67,9 @@ d3.csv('../data/njSuicide.csv', d3.autoType)
     .datum(data)
     .attr("class", "area")
     .attr("d", areaGen)
-    .attr("fill", "red");
+    .attr("fill", "red")
+    .attr("stroke", "black")
+    .attr("stroke-width", "1.5")
 
   });
 
