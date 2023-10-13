@@ -26,6 +26,13 @@ Promise.all([
   const pathGenFn = d3.geoPath().projection(projection)
   // console.log(path)
 
+  // console.log(nationalities)
+  // console.log(nationalities.map(d => d.Country))
+
+  const nationalitiesRep = nationalities.map(d => d.Country)
+
+  // console.log(nationalitiesRep)
+
   // APPEND GEOJSON PATH  
   const countries = svg.selectAll("path.country")
     .data(geojson.features)
@@ -33,17 +40,33 @@ Promise.all([
     .attr("class", 'country')
     .attr("d", pathGenFn)
     .attr("stroke", "black")
-    .attr("fill", "transparent")    
+    .attr("fill", d => {
+      if (nationalitiesRep.includes(d.properties.name)){
+        return "black"
+      }
 
-  svg.selectAll("circle.countries")
-      .data(nationalities)
-      .join("circle")
-      .attr("class", "nationalities")
-      .attr("r", 5)
-      .attr("transform", d =>{
-        const [x,y] = projection([d.longitude, d.latitude])
-        return `translate(${x}, ${y})`
+
+      else{
+        return "transparent"
+      }
+
       })
+
+  
+    // .attr("fill", "transparent")    
+  
+  
+  
+
+  // svg.selectAll("circle.countries")
+  //     .data(nationalities)
+  //     .join("circle")
+  //     .attr("class", "nationalities")
+  //     .attr("r", 5)
+  //     .attr("transform", d =>{
+  //       const [x,y] = projection([d.longitude, d.latitude])
+  //       return `translate(${x}, ${y})`
+  //     })
 
   
 
