@@ -1,12 +1,12 @@
 /* CONSTANTS AND GLOBALS */
-// const width = ,
-//   height = ,
-//   margin = ,
-//   radius = ;
+const width = window.innerWidth * 0.9,
+  height = window.innerHeight * 0.7,
+  margin = { top: 20, bottom: 50, left: 60, right: 40 };
+
 
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
 // All these variables are empty before we assign something to them.
-// let svg;
+let svg;
 // let xScale;
 // let yScale;
 // let colorScale;
@@ -29,17 +29,27 @@ d3.json("../data/environmentRatings.json", d3.autoType).then(raw_data => {
 /* INITIALIZING FUNCTION */
 // this will be run *one time* when the data finishes loading in
 function init() {
+
+  console.log(state)
   // + SCALES
+  const xScale = d3.scaleLinear()
+    .domain([0,1 ])
+    .range([margin.left, width - margin.right])
 
+  const yScale = d3.scaleLinear()
+    .domain([])
+    .range([height - margin.bottom, margin.top])
 
+  
   // + AXES
-
+  const xAxis = d3.axisBottom(xScale)
+  const yAxis = d3.axisLeft(yScale)
 
   // + UI ELEMENT SETUP
 
 
   // + CREATE SVG ELEMENT
-
+  svg = d3.select("#container");
 
   // + CALL AXES
 
