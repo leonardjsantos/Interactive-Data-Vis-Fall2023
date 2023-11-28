@@ -4,9 +4,7 @@ const width = window.innerWidth * 0.7,
   margin = { top: 40, bottom: 60, left: 80, right: 40 };
 
 /* LOAD DATA */
-
-/* LOAD DATA */
-d3.csv('../data/artists.csv', d3.autoType)
+d3.csv('final_artists1.csv', d3.autoType)
   .then(data => {
     data.forEach(d => {
       d.year = d3.timeParse('%Y')(d.year); 
@@ -18,7 +16,7 @@ d3.csv('../data/artists.csv', d3.autoType)
     .range([margin.left, width - margin.right]);
 
   const yScale = d3.scaleLinear()
-    .domain([d3.min(data,function(d){return d.Gender;}) - 50, d3.max(data,function(d){return d.Gender;}) + 50])
+    .domain([d3.min(data,function(d){return d.total;}), d3.max(data,function(d){return d.total;}) + 50])
     .range([height - margin.bottom, margin.top]);
 
   // CREATE SVG ELEMENT
@@ -56,13 +54,28 @@ d3.csv('../data/artists.csv', d3.autoType)
     .attr("y", margin.left / 4)
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
-    .text("Total # of Artists");
+    .text("Total # of Art Pieces Made");
+
+  // AREA GENERATOR FUNCTION
+  const areaGen1 = d3.area()
+    .x(d => xScale(d.year))
+    .y0(height - margin.bottom)
+    .y1(d => yScale(d.Male));
+
+  // DRAW AREA
+  svg.append("path")
+    .datum(data)
+    .attr("class", "area")
+    .attr("d", areaGen1)
+    .attr("fill", "blue")
+    .attr("stroke", "black")
+    .attr("stroke-width", "1")
 
   // AREA GENERATOR FUNCTION
   const areaGen = d3.area()
     .x(d => xScale(d.year))
     .y0(height - margin.bottom)
-    .y1(d => yScale(d.Gender));
+    .y1(d => yScale(d.Female));
 
   // DRAW AREA
   svg.append("path")
@@ -71,6 +84,23 @@ d3.csv('../data/artists.csv', d3.autoType)
     .attr("d", areaGen)
     .attr("fill", "red")
     .attr("stroke", "black")
-    .attr("stroke-width", "1.5")
+    .attr("stroke-width", "1")
+
+  // AREA GENERATOR FUNCTION
+  const areaGen2 = d3.area()
+    .x(d => xScale(d.year))
+    .y0(height - margin.bottom)
+    .y1(d => yScale(d.NonBinary));
+
+  // DRAW AREA
+  svg.append("path")
+    .datum(data)
+    .attr("class", "area")
+    .attr("d", areaGen2)
+    .attr("fill", "yellow")
+    .attr("stroke", "black")
+    .attr("stroke-width", "1")
+
+  
 
   });
