@@ -4,14 +4,20 @@ body {
   padding: 1em;
 }
 
-h1 {
+h1{
   font-size: 3em;
   margin: 0.25em 0;
+  text-align: center;
+}
+
+h2{
+  text-align: center;
 }
 
 h3 {
   font-size: 2em;
   margin: 0.25em 0;
+  text-align: center;
 }
 
 p {
