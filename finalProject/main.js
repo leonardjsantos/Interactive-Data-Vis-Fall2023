@@ -3,6 +3,7 @@ const width = window.innerWidth * 0.8,
   height = window.innerHeight * 0.7,
   margin = { top: 40, bottom: 60, left: 80, right: 40 };
 
+// VIZ 1
 /* LOAD DATA */
 d3.csv('artistsSummary.csv', d3.autoType)
   .then(data => {
@@ -199,3 +200,147 @@ d3.csv('artistsSummary.csv', d3.autoType)
   
 
   });
+
+const colors = ["red", "blue", "yellow"];
+
+// VIZ 2
+d3.csv('artworksSummary.csv', d3.autoType)
+.then(data => {
+  console.log("data",data)
+  
+  const xScale = d3.scaleLinear()
+    .domain([0, 65000])
+    .range([0, width])
+    .nice()
+
+  const yScale = d3.scaleBand()
+    .domain(data.map(d => d.departments))
+    .range([height,0])
+
+  const svg = d3.select("#container2")
+    .append("svg")
+    .attr("height", height)
+    .attr("width", width)
+    .style("background-color", "aliceblue")
+    .style("overflow", "visible")
+
+  const xAxisGroup = svg.append("g")
+  const yAxisGroup = svg.append("g")
+
+  yAxisGroup
+    .call(d3.axisLeft(yScale))
+  
+  xAxisGroup
+    .style("transform", `translate(0, ${height}px)`)
+    .call(d3.axisBottom(xScale))
+
+  
+
+  const bars = svg.selectAll("rect.bar")
+    .data(data)
+    .join("rect")
+    .attr("class", "bar")
+    .attr("width", d => xScale(d.Male))
+    .attr("height", 50)
+    .attr("y", d => yScale(d.departments) + 25)
+    .attr("x", d => xScale(0))
+    .attr("fill", "blue")
+
+  
+
+});
+
+// VIZ 3
+d3.csv('artworksSummary.csv', d3.autoType)
+.then(data => {
+  console.log("data",data)
+  
+  const xScale = d3.scaleLinear()
+    .domain([0, 12000])
+    .range([0, width])
+    .nice()
+
+  const yScale = d3.scaleBand()
+    .domain(data.map(d => d.departments))
+    .range([height,0])
+
+  const svg = d3.select("#container3")
+    .append("svg")
+    .attr("height", height)
+    .attr("width", width)
+    .style("background-color", "aliceblue")
+    .style("overflow", "visible")
+
+  const xAxisGroup = svg.append("g")
+  const yAxisGroup = svg.append("g")
+
+  yAxisGroup
+    .call(d3.axisLeft(yScale))
+  
+  xAxisGroup
+    .style("transform", `translate(0, ${height}px)`)
+    .call(d3.axisBottom(xScale))
+
+  
+
+  const bars = svg.selectAll("rect.bar")
+    .data(data)
+    .join("rect")
+    .attr("class", "bar")
+    .attr("width", d => xScale(d.Female))
+    .attr("height", 50)
+    .attr("y", d => yScale(d.departments) + 25)
+    .attr("x", d => xScale(0))
+    .attr("fill", "red")
+
+  
+
+});
+
+// VIZ 4
+d3.csv('artworksSummary.csv', d3.autoType)
+.then(data => {
+  console.log("data",data)
+  
+  const xScale = d3.scaleLinear()
+    .domain([0, 20])
+    .range([0, width])
+    .nice()
+
+  const yScale = d3.scaleBand()
+    .domain(data.map(d => d.departments))
+    .range([height,0])
+
+  const svg = d3.select("#container4")
+    .append("svg")
+    .attr("height", height)
+    .attr("width", width)
+    .style("background-color", "aliceblue")
+    .style("overflow", "visible")
+
+  const xAxisGroup = svg.append("g")
+  const yAxisGroup = svg.append("g")
+
+  yAxisGroup
+    .call(d3.axisLeft(yScale))
+  
+  xAxisGroup
+    .style("transform", `translate(0, ${height}px)`)
+    .call(d3.axisBottom(xScale))
+
+  
+
+  const bars = svg.selectAll("rect.bar")
+    .data(data)
+    .join("rect")
+    .attr("class", "bar")
+    .attr("width", d => xScale(d.NonBinary))
+    .attr("height", 50)
+    .attr("y", d => yScale(d.departments) + 25)
+    .attr("x", d => xScale(0))
+    .attr("fill", "yellow")
+    .attr("stroke", "black")
+    .attr("stroke-weight", "1")
+  
+
+});

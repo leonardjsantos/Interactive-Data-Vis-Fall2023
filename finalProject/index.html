@@ -14,7 +14,6 @@
     </div>
     
     <div class="main">
-      
       <h4>Prospectus + Ideation Session Notes</h4>
 
       <p>For my final project, I’m visualizing the total number of artwork created by men, women, and non-binary folk to show the gender artist gap throughout the least couple of hundred years. 
@@ -53,11 +52,12 @@
         <li>Stack each of the areas on top of each other so that the top of the "Males" section would be able to show the maximum number of art pieces made in a year in total.</li>
         <li>More clearly illustrate the maximum number of each area</li>
         <li>Fix the bottom of the graph so that the lines wouldn't go below the x-axis</li>
+        <li>Potentially move forward with my second graph idea, to visualize everything by Department using the other data set.</li>
       </ul>
 
-      <h4>Final Version</h4>
+      <h4>Final Graph 1</h4>
 
-      <p>With these notes, I set out to finish the final version of my project, shown below!</p>
+      <p>With these notes, I set out to finish the final version of my first visualization, shown below!</p>
 
       <div id="container"></div>
 
@@ -71,13 +71,47 @@
         I also decreased the maximum number on the y-axis so that there wasn't so much empty space at the top of the graph.
       </p>
 
+      <h4>Final Graph 2</h4>
+
+      <p>With the first graph completed, I decided to move forward and create my second data visualization.
+        To further investigate gender in the art world, I looked at how the artwork could be divided by Department using the other data set (artworks.csv).
+      </p>
+
+      <p>I followed very similar process to my other visualization. I started by downloading the data into Microsoft Excel, and used Filters to 
+        clean the data.
+        I prioritized finding artwork that was created by a single artist. I also required a minimum of at least 50 pieces of artwork to be made in total within each Department to be considered, which I was able to find by using Pivot Tables.
+      </p>
+
+      <p>
+        My priority in this was to compare the interest of certain departments by gender. Through this method, I made the following three visualizations:
+      </p>
+
+      <h5>Male Representation by Department</h5>
+      <div id="container2"></div>
+
+      <h5>Female Representation by Department</h5>
+      <div id="container3"></div>
+
+      <h5>Non-Binary Representation by Department</h5>
+      <div id="container4"></div>
+
+      <p>
+        By looking at these three visualizations, I was able to find that Drawing and Prints were by far the most popular department for males and females. Photograph had the second highest investment from both of these categories overall.
+      </p>
+
+      <p>
+        However, the most common one for the Non-Binary category was Media and Performance, while their second highest one is painting and sculpture.
+
+      </p>
+
+
       <h4>Concluding Notes</h4>
 
       <p>
         From someone who had no experience with D3.js, I'm fairly proud of the work that I did with this project!
-        My biggest challenge was incorporating interactivity, as I had trouble with the mouseover functions. I spent most of my time 
+        My biggest challenge was incorporating interactivity, as I had trouble with the mouseover functions for the first visualization. I spent most of my time 
         cleaning up the data and making decisions on what to include or leave out. If I had more time, I would want to get the text to
-        disappear after I finish hovering over each of the areas.
+        disappear after I finish hovering over each of the areas. On the second visualization, I would've loved to actually create the stacked bar graph like I had intended.
       </p>
 
       <p>
