@@ -4,6 +4,10 @@ body {
   padding: 1em;
 }
 
+.heading{
+  text-align: center;
+}
+
 h1{
   font-size: 3em;
   margin: 0.25em 0;
@@ -20,6 +24,28 @@ h3 {
   text-align: center;
 }
 
+.main h4{
+  font-size: 1.5em;
+}
+
 p {
-  font-size: 1em;
+  font-size: 1.2em;
+}
+
+.main{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+img{
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 70%;
+  text-align: center;
+}
+
+#roughDraftImage{
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
